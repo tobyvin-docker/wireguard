@@ -11,17 +11,25 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
-      - SERVERURL=asgard.${DOMAIN}.com
+      - SERVERURL=asgard.${DOMAIN}
       - SERVERPORT=51820
-      - PEERS=tayoby,thor,mjolnir
-      - ALLOWEDIPS=192.168.1.0/24, 10.13.13.0/24
+      - PEERS=tayoby,thor,mjolnir,aegir
+      - PEERDNS=172.31.1.2
+      - ALLOWEDIPS=192.168.1.0/24, 172.31.1.2
     volumes:
       - ./data:/config
       - /lib/modules:/lib/modules
+    networks:
+      default:
+    dns:
+      - 172.31.1.2
     ports:
       - 51820:51820/udp
     restart: unless-stopped
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
 
 networks:
   default:
-    name: wireguard
+    name: pihole
+    external: true
