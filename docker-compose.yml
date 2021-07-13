@@ -14,15 +14,13 @@ services:
       - SERVERURL=asgard.${DOMAIN}
       - SERVERPORT=51820
       - PEERS=tayoby,thor,mjolnir,aegir
-      - PEERDNS=172.31.1.2
-      - ALLOWEDIPS=192.168.1.0/24, 172.31.1.2
+      - ALLOWEDIPS=192.168.1.0/24, 172.31.1.4
     volumes:
       - ./data:/config
       - /lib/modules:/lib/modules
     networks:
       default:
-    dns:
-      - 172.31.1.2
+        ipv4_address: 172.31.1.4
     ports:
       - 51820:51820/udp
     restart: unless-stopped
