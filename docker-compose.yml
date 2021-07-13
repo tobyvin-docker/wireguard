@@ -13,8 +13,6 @@ services:
       - TZ=America/Chicago
       - SERVERURL=asgard.${DOMAIN}.com
       - SERVERPORT=51820
-      - PEERS=tayoby,thor,mjolnir
-      - ALLOWEDIPS=192.168.1.0/24, 10.13.13.0/24
     volumes:
       - ./data:/config
       - /lib/modules:/lib/modules
